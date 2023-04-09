@@ -9,9 +9,7 @@ class RAccelerate < Formula
     url "https://cran.rstudio.com/banner.shtml"
     regex(%r{href=(?:["']?|.*?/)R[._-]v?(\d+(?:\.\d+)+)\.t}i)
   end
-  
-  depends_on :macos
-  
+
   depends_on "pkg-config" => :build
   depends_on "cairo"
   depends_on "gcc" # for gfortran
@@ -23,6 +21,8 @@ class RAccelerate < Formula
   depends_on "readline"
   depends_on "tcl-tk"
   depends_on "xz"
+
+  depends_on :macos
 
   uses_from_macos "curl"
   uses_from_macos "icu4c"
