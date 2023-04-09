@@ -1,4 +1,4 @@
-class R < Formula
+class RAccelerate < Formula
   desc "Software environment for statistical computing - macOS build using Accelerate framework"
   homepage "https://www.r-project.org/"
   url "https://cran.r-project.org/src/base/R-4/R-4.2.3.tar.gz"
