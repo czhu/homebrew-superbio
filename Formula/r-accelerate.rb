@@ -1,5 +1,5 @@
 class RAccelerate < Formula
-  desc "Software environment for statistical computing - macOS build using Accelerate framework"
+  desc "Software environment for statistical computing"
   homepage "https://www.r-project.org/"
   url "https://cran.r-project.org/src/base/R-4/R-4.2.3.tar.gz"
   sha256 "55e4a9a6d43be314e2c03d0266a6fa5444afdce50b303bfc3b82b3979516e074"
@@ -9,7 +9,9 @@ class RAccelerate < Formula
     url "https://cran.rstudio.com/banner.shtml"
     regex(%r{href=(?:["']?|.*?/)R[._-]v?(\d+(?:\.\d+)+)\.t}i)
   end
-
+  
+  depends_on :macos
+  
   depends_on "pkg-config" => :build
   depends_on "cairo"
   depends_on "gcc" # for gfortran
@@ -25,14 +27,6 @@ class RAccelerate < Formula
   uses_from_macos "curl"
   uses_from_macos "icu4c"
   uses_from_macos "libffi", since: :catalina
-
-  on_linux do
-    depends_on "libice"
-    depends_on "libtirpc"
-    depends_on "libx11"
-    depends_on "libxt"
-    depends_on "pango"
-  end
 
   # needed to preserve executable permissions on files without shebangs
   skip_clean "lib/R/bin", "lib/R/doc"
@@ -74,18 +68,6 @@ class RAccelerate < Formula
     if OS.mac?
       args << "--without-x"
       args << "--with-aqua"
-    else
-      args << "--libdir=#{lib}" # avoid using lib64 on CentOS
-
-      # Avoid references to homebrew shims
-      args << "LD=ld"
-
-      # If LDFLAGS contains any -L options, configure sets LD_LIBRARY_PATH to
-      # search those directories. Remove -LHOMEBREW_PREFIX/lib from LDFLAGS.
-      ENV.remove "LDFLAGS", "-L#{HOMEBREW_PREFIX}/lib"
-
-      ENV.append "CPPFLAGS", "-I#{Formula["libtirpc"].opt_include}/tirpc"
-      ENV.append "LDFLAGS", "-L#{Formula["libtirpc"].opt_lib}"
     end
 
     # Help CRAN packages find gettext and readline
@@ -146,11 +128,7 @@ class RAccelerate < Formula
                      "Failed to install gss package"
 
     winsys = "[1] \"aqua\""
-    if OS.linux?
-      return if ENV["HOMEBREW_GITHUB_ACTIONS"]
 
-      winsys = "[1] \"x11\""
-    end
     assert_equal winsys,
                  shell_output("#{bin}/Rscript -e 'library(tcltk)' -e 'tclvalue(.Tcl(\"tk windowingsystem\"))'").chomp
   end
