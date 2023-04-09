@@ -1,4 +1,4 @@
-# Czhu Superbio
+# Custom builds for Bioinformatics tools
 
 ## How do I install these formulae?
 
