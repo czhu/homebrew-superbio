@@ -1,8 +1,8 @@
 class RAccelerate < Formula
   desc "Software environment for statistical computing"
   homepage "https://www.r-project.org/"
-  url "https://cran.r-project.org/src/base/R-4/R-4.2.3.tar.gz"
-  sha256 "55e4a9a6d43be314e2c03d0266a6fa5444afdce50b303bfc3b82b3979516e074"
+  url "https://cran.r-project.org/src/base/R-4/R-4.3.0.tar.gz"
+  sha256 "45dcc48b6cf27d361020f77fde1a39209e997b81402b3663ca1c010056a6a609"
   license "GPL-2.0-or-later"
 
   livecheck do
@@ -16,7 +16,7 @@ class RAccelerate < Formula
   depends_on "gettext"
   depends_on "jpeg-turbo"
   depends_on "libpng"
-  depends_on "openblas"
+#  depends_on "openblas"
   depends_on "pcre2"
   depends_on "readline"
   depends_on "tcl-tk"
