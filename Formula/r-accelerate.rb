@@ -36,15 +36,6 @@ class RAccelerate < Formula
     cause "Unknown. FIXME."
   end
 
-  # Patch to fix build on macOS Ventura, remove in next release
-  # https://bugs.r-project.org/show_bug.cgi?id=18426
-  patch do
-    on_ventura :or_newer do
-      url "https://raw.githubusercontent.com/Homebrew/formula-patches/1b1104166dc06444e691dd1b2bec3606b095e382/r/ventura.diff"
-      sha256 "de146793532e4498480014f824bf2446e02aa70206284851127561f6c37108bf"
-    end
-  end
-
   def install
     # `configure` doesn't like curl 8+, but convince it that everything is ok.
     # TODO: report this upstream.
