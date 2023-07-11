@@ -1,8 +1,8 @@
 class RAccelerate < Formula
   desc "Software environment for statistical computing"
   homepage "https://www.r-project.org/"
-  url "https://cran.r-project.org/src/base/R-4/R-4.3.0.tar.gz"
-  sha256 "45dcc48b6cf27d361020f77fde1a39209e997b81402b3663ca1c010056a6a609"
+  url "https://cran.r-project.org/src/base/R-4/R-4.3.1.tar.gz"
+  sha256 "8dd0bf24f1023c6f618c3b317383d291b4a494f40d73b983ac22ffea99e4ba99"
   license "GPL-2.0-or-later"
 
   livecheck do
