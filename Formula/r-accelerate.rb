@@ -46,7 +46,7 @@ class RAccelerate < Formula
       "--enable-memory-profiling",
       "--with-tcl-config=#{Formula["tcl-tk"].opt_lib}/tclConfig.sh",
       "--with-tk-config=#{Formula["tcl-tk"].opt_lib}/tkConfig.sh",
-      "--with-blas=-framework Accelerate",
+      "--with-newAccelerate=lapack",
       "--enable-R-shlib",
       "--disable-java",
       "--with-cairo",
