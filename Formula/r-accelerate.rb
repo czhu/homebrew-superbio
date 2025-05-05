@@ -24,8 +24,6 @@ class RAccelerate < Formula
   depends_on "xz"
   depends_on "zstd"
 
-  depends_on :macos
-
   uses_from_macos "bzip2"
   uses_from_macos "curl"
   uses_from_macos "libffi", since: :catalina
@@ -44,11 +42,6 @@ class RAccelerate < Formula
   
   # needed to preserve executable permissions on files without shebangs
   skip_clean "lib/R/bin", "lib/R/doc"
-
-  fails_with :gcc do
-    version "11"
-    cause "Unknown. FIXME."
-  end
 
   def install
     # `configure` doesn't like curl 8+, but convince it that everything is ok.
@@ -87,13 +80,11 @@ class RAccelerate < Formula
       system "make", "install"
     end
 
-    cd "src/nmath/standalone" do
-      system "make"
-      ENV.deparallelize do
-        system "make", "install"
-      end
+    system "make", "-C", "src/nmath/standalone"
+    ENV.deparallelize do
+      system "make", "-C", "src/nmath/standalone", "install"
     end
-
+    
     r_home = lib/"R"
 
     # make Homebrew packages discoverable for R CMD INSTALL
